@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // // Home.js - Main Home Page after Login
 
 // import React from 'react';
@@ -182,29 +181,10 @@
 "use client"
 import { useNavigate } from "react-router-dom"
 import { Container, Box, Typography, Grid, Card, CardContent, Button, useTheme, useMediaQuery } from "@mui/material"
-=======
-// Home.js - Main Home Page after Login
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  Container,
-  Box,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 import {
   School as SchoolIcon,
   Book as BookIcon,
   Group as GroupIcon,
-<<<<<<< HEAD
   Work as WorkIcon,
   ContactMail as ContactIcon,
   EmojiEvents,
@@ -251,58 +231,10 @@ const Home = () => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
   const navigate = useNavigate()
-=======
-  ContactMail as ContactIcon,
-  ArrowForward as ArrowForwardIcon,
-  EmojiEvents,
-} from '@mui/icons-material';
-import PageHeader from './PageHeader';
-
-const sections = [
-  {
-    title: 'Resources',
-    description: 'Access a vast collection of study materials, notes, and educational resources shared by students and educators.',
-    icon: <BookIcon sx={{ fontSize: 40 }} />,
-    path: '/resources',
-    image: 'https://source.unsplash.com/random/800x600?education',
-    color: '#1976d2',
-  },
-  {
-    title: 'About Us',
-    description: 'Learn about our mission, values, and the team behind the Academic Resource Portal.',
-    icon: <SchoolIcon sx={{ fontSize: 40 }} />,
-    path: '/about',
-    image: 'https://source.unsplash.com/random/800x600?university',
-    color: '#2e7d32',
-  },
-  {
-    title: 'Community',
-    description: 'Join our growing community of students and educators. Share knowledge and learn together.',
-    icon: <GroupIcon sx={{ fontSize: 40 }} />,
-    path: '/community',
-    image: 'https://source.unsplash.com/random/800x600?students',
-    color: '#ed6c02',
-  },
-  {
-    title: 'Contact',
-    description: 'Get in touch with us. We\'re here to help and answer any questions you may have.',
-    icon: <ContactIcon sx={{ fontSize: 40 }} />,
-    path: '/contact',
-    image: 'https://source.unsplash.com/random/800x600?contact',
-    color: '#9c27b0',
-  },
-];
-
-const Home = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const navigate = useNavigate();
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
   const features = [
     {
       icon: <SchoolIcon sx={{ fontSize: 40 }} />,
-<<<<<<< HEAD
       title: "Educational Resources",
       description:
         "Access a vast collection of study materials, notes, and resources shared by students and educators.",
@@ -332,34 +264,6 @@ const Home = () => {
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box sx={{ textAlign: "center", mb: 8 }}>
-=======
-      title: 'Educational Resources',
-      description: 'Access a vast collection of study materials, notes, and resources shared by students and educators.',
-    },
-    {
-      icon: <GroupIcon sx={{ fontSize: 40 }} />,
-      title: 'Community Learning',
-      description: 'Connect with peers, share knowledge, and collaborate on projects in a supportive environment.',
-    },
-    {
-      icon: <BookIcon sx={{ fontSize: 40 }} />,
-      title: 'Interactive Learning',
-      description: 'Engage with interactive content, quizzes, and discussions to enhance your learning experience.',
-    },
-    {
-      icon: <EmojiEvents sx={{ fontSize: 40 }} />,
-      title: 'Achievement System',
-      description: 'Track your progress, earn badges, and celebrate your learning milestones.',
-    },
-  ];
-
-  return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <PageHeader title="Welcome to Academic Platform" />
-      
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
           <Typography
             variant="h2"
             component="h1"
@@ -371,15 +275,7 @@ const Home = () => {
           >
             Your Gateway to Academic Excellence
           </Typography>
-<<<<<<< HEAD
           <Typography variant="h5" color="text.secondary" sx={{ mb: 4, maxWidth: "800px", mx: "auto" }}>
-=======
-          <Typography
-            variant="h5"
-            color="text.secondary"
-            sx={{ mb: 4, maxWidth: '800px', mx: 'auto' }}
-          >
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
             Join our community of learners and educators to share knowledge, collaborate, and grow together.
           </Typography>
           <Button
@@ -400,7 +296,6 @@ const Home = () => {
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Card
                 sx={{
-<<<<<<< HEAD
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -419,48 +314,14 @@ const Home = () => {
                       mb: 2,
                       display: "flex",
                       justifyContent: "center",
-=======
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                  },
-                }}
-              >
-                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                  <Box
-                    sx={{
-                      color: 'primary.main',
-                      mb: 2,
-                      display: 'flex',
-                      justifyContent: 'center',
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
                     }}
                   >
                     {feature.icon}
                   </Box>
-<<<<<<< HEAD
                   <Typography variant="h6" component="h3" gutterBottom sx={{ fontWeight: 600 }}>
                     {feature.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-=======
-                  <Typography
-                    variant="h6"
-                    component="h3"
-                    gutterBottom
-                    sx={{ fontWeight: 600 }}
-                  >
-                    {feature.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mb: 2 }}
-                  >
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
                     {feature.description}
                   </Typography>
                 </CardContent>
@@ -470,15 +331,8 @@ const Home = () => {
         </Grid>
       </Container>
     </Box>
-<<<<<<< HEAD
   )
 }
 
 export default Home
 
-=======
-  );
-};
-
-export default Home;
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c

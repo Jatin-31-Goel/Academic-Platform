@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DEP Platform
 
 A comprehensive platform for IIT Ropar students with secure authentication, resource sharing, and various academic features.
@@ -138,14 +137,8 @@ npm start
 ## Environment Variables Required
 See `.env.example` for required environment variables.
 
-## Team Members
-- **Jatin (2022MCB1266)** 
-- **Jitender (2022MCB1318)** 
-- **Sarthak (2022MCB1278)**
-
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
-=======
