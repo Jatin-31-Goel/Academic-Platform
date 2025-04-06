@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import React, { useState } from 'react';
 // import { useNavigate, Link } from 'react-router-dom';
 // import {
@@ -229,10 +228,6 @@
 // export default PageHeader; 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-=======
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 import {
   AppBar,
   Toolbar,
@@ -256,11 +251,8 @@ import {
   School,
   Info,
   ContactMail,
-<<<<<<< HEAD
   Work, // Added Work icon for Jobs
   WorkOutline, // Added WorkOutline icon for Internships and Placements
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 } from '@mui/icons-material';
 import { useTheme as useCustomTheme } from '../theme/ThemeContext';
 import { useAuth } from '../context/auth/AuthContext';
@@ -295,11 +287,8 @@ const PageHeader = ({ title }) => {
   const menuItems = [
     { text: 'Home', icon: <Home />, path: '/' },
     { text: 'Resources', icon: <School />, path: '/resources' },
-<<<<<<< HEAD
     { text: 'Jobs', icon: <Work />, path: '/jobs' }, // Added Jobs menu item
     { text: "Internships & Placements", icon: <WorkOutline />, path: "/internships-placements" }, // Add this new menu item
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
     { text: 'About Us', icon: <Info />, path: '/about' },
     { text: 'Contact', icon: <ContactMail />, path: '/contact' },
   ];
@@ -468,8 +457,4 @@ const PageHeader = ({ title }) => {
   );
 };
 
-<<<<<<< HEAD
 export default PageHeader;
-=======
-export default PageHeader; 
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c

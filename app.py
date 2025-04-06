@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 from flask import Flask, request, jsonify, send_from_directory, g
-=======
-from flask import Flask, request, jsonify, send_from_directory
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_migrate import Migrate
@@ -18,7 +14,6 @@ from flask_cors import CORS
 from flasgger import Swagger, swag_from
 import re
 import logging
-<<<<<<< HEAD
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -29,17 +24,11 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import time
 from functools import wraps
-=======
-
-# Load environment variables from .env file
-load_dotenv()
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-<<<<<<< HEAD
 # Security headers function
 def add_security_headers(response):
     """Add security headers to each response"""
@@ -57,10 +46,6 @@ load_dotenv()
 # Initialize app
 app = Flask(__name__)
 app.after_request(add_security_headers)
-=======
-# Initialize app
-app = Flask(__name__)
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 CORS(app, resources={
     r"/*": {
         "origins": ["http://localhost:3000"],
@@ -70,7 +55,6 @@ CORS(app, resources={
     }
 })
 
-<<<<<<< HEAD
 # Get the current directory
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'dep.db')
@@ -85,24 +69,12 @@ app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET', 'your-secret-key')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 app.config['UPLOAD_FOLDER'] = 'uploads'
-=======
-# Configurations
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///database.db')
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET', 'your-secret-key')
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
 # Ensure upload folder exists
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
-<<<<<<< HEAD
 # Initialize extensions
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
@@ -118,14 +90,9 @@ cloudinary.config(
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-<<<<<<< HEAD
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(120), nullable=False)
     password_changed_at = db.Column(db.DateTime, nullable=True)
-=======
-    password_hash = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=True)
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
     bio = db.Column(db.Text, nullable=True)
     profile_picture = db.Column(db.String(200), nullable=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
@@ -137,7 +104,6 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-<<<<<<< HEAD
 class OTP(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), nullable=False)
@@ -151,8 +117,6 @@ class OTP(db.Model):
         db.Index('idx_expires_at', 'expires_at')
     )
 
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String(80), nullable=False)
@@ -190,7 +154,6 @@ class Vote(db.Model):
         db.UniqueConstraint('upload_id', 'user', name='unique_user_vote'),
     )
 
-<<<<<<< HEAD
 # Model for placement data
 class Placement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -254,8 +217,6 @@ class ClassroomMessage(db.Model):
     content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 # Helper function for allowed file extensions
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'docx', 'txt'}
 def allowed_file(filename):
@@ -278,7 +239,6 @@ def validate_password(password):
 
 @app.route('/signup', methods=['POST'])
 def signup():
-<<<<<<< HEAD
     data = request.get_json()
     logger.debug(f"Received signup data: {data}")
     
@@ -590,55 +550,6 @@ def send_password_reset_email(email, otp):
     except Exception as e:
         logger.error(f"Error sending password reset email: {str(e)}")
         return False
-=======
-    try:
-        logger.debug("Received signup request")
-        data = request.get_json()
-        
-        if not data:
-            logger.warning("No data provided in signup request")
-            return jsonify({'message': 'No data provided'}), 400
-
-        username = data.get('username')
-        password = data.get('password')
-
-        logger.debug(f"Attempting to create user: {username}")
-
-        # Validate username
-        is_valid_username, username_error = validate_username(username)
-        if not is_valid_username:
-            logger.warning(f"Invalid username: {username_error}")
-            return jsonify({'message': username_error}), 400
-
-        # Validate password
-        is_valid_password, password_error = validate_password(password)
-        if not is_valid_password:
-            logger.warning(f"Invalid password: {password_error}")
-            return jsonify({'message': password_error}), 400
-
-        # Check if username already exists
-        if User.query.filter_by(username=username).first():
-            logger.warning(f"Username already exists: {username}")
-            return jsonify({'message': 'Username already exists'}), 409
-
-        # Create new user
-        new_user = User(username=username)
-        new_user.set_password(password)
-        
-        try:
-            db.session.add(new_user)
-            db.session.commit()
-            logger.info(f"User created successfully: {username}")
-            return jsonify({'message': 'User created successfully'}), 201
-        except Exception as db_error:
-            db.session.rollback()
-            logger.error(f"Database error during signup: {str(db_error)}")
-            return jsonify({'message': 'Error creating user. Please try again.'}), 500
-
-    except Exception as e:
-        logger.error(f"Unexpected error during signup: {str(e)}")
-        return jsonify({'message': 'An unexpected error occurred'}), 500
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -648,7 +559,6 @@ def login():
         if not data:
             return jsonify({'message': 'No data provided'}), 400
 
-<<<<<<< HEAD
         email = data.get('email')
         password = data.get('password')
 
@@ -659,25 +569,12 @@ def login():
         
         if not user or not user.check_password(password):
             return jsonify({'message': 'Invalid email or password'}), 401
-=======
-        username = data.get('username')
-        password = data.get('password')
-
-        if not username or not password:
-            return jsonify({'message': 'Username and password are required'}), 400
-
-        user = User.query.filter_by(username=username).first()
-        
-        if not user or not user.check_password(password):
-            return jsonify({'message': 'Invalid username or password'}), 401
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
         # Update last login
         user.last_login = db.func.now()
         db.session.commit()
 
         # Create access token
-<<<<<<< HEAD
         access_token = create_access_token(identity=user.username)
         
         return jsonify({
@@ -1079,18 +976,6 @@ def resend_otp():
                 'error': 'Failed to resend OTP email. Please try again.'
             }), 500
 
-=======
-        access_token = create_access_token(identity=username)
-        
-        return jsonify({
-            'access_token': access_token,
-            'username': username
-        }), 200
-
-    except Exception as e:
-        return jsonify({'message': 'An unexpected error occurred'}), 500
-
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 @app.route('/uploads', methods=['POST'])
 @jwt_required()
 @swag_from({
@@ -1140,19 +1025,11 @@ def upload_file():
             try:
                 # Upload to Cloudinary
                 upload_result = cloudinary.uploader.upload(
-<<<<<<< HEAD
                     file.stream,
                     folder="material_sharing",
                     resource_type="auto"
                 )
                 print("Upload Result:", upload_result)
-=======
-                    file,
-                    folder="material_sharing",
-                    resource_type="auto"
-                )
-                
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
                 file_url = upload_result.get('secure_url')
                 public_id = upload_result.get('public_id')
                 file_type = os.path.splitext(file.filename)[1][1:].lower()
@@ -1190,11 +1067,8 @@ def upload_file():
             )
         else:
             return jsonify({'message': 'Either a file or link must be provided'}), 400
-<<<<<<< HEAD
         # print("Received Files:", request.files)
         # print("Received Form Data:", request.form)
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
         # Save to database
         try:
@@ -1473,15 +1347,10 @@ def search_materials():
 def verify_token():
     try:
         current_user = get_jwt_identity()
-<<<<<<< HEAD
         logger.info(f"Token verified successfully for user: {current_user}")
         return jsonify({'user': current_user}), 200
     except Exception as e:
         logger.error(f"Token verification failed: {str(e)}")
-=======
-        return jsonify({'user': current_user}), 200
-    except Exception as e:
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
         return jsonify({'message': 'Invalid token'}), 401
 
 # Add file validation
@@ -1573,7 +1442,6 @@ def update_profile():
         print(f"Error updating profile: {str(e)}")
         return jsonify({'message': 'Failed to update profile'}), 500
 
-<<<<<<< HEAD
 # profile picture upload handling
 @app.route('/upload-profile-picture', methods=['POST'])
 @jwt_required()
@@ -1626,8 +1494,6 @@ def upload_profile_picture():
         print(f"Error uploading profile picture: {str(e)}")
         return jsonify({'message': f'Error uploading profile picture: {str(e)}'}), 500
 
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 @app.route('/user-stats', methods=['GET'])
 @jwt_required()
 def get_user_stats():
@@ -1640,7 +1506,6 @@ def get_user_stats():
         # Get user's comments count
         comments_count = Comment.query.filter_by(author=current_user).count()
         
-<<<<<<< HEAD
         # Get placements added count
         placements_added = Placement.query.filter_by(created_by=current_user).count()
         
@@ -1663,8 +1528,6 @@ def get_user_stats():
             'name': classroom.name
         } for classroom in classrooms_joined]
         
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
         # Get recent activity (last 5 uploads)
         recent_uploads = Upload.query.filter_by(author=current_user)\
             .order_by(Upload.created_at.desc())\
@@ -1680,7 +1543,6 @@ def get_user_stats():
             'downvotes': upload.downvotes
         } for upload in recent_uploads]
         
-<<<<<<< HEAD
         # Create a log of searches (we need to track these in the respective search endpoints)
         # For now, we'll return placeholder counts that you can implement fully later
         
@@ -1694,11 +1556,6 @@ def get_user_stats():
             'dsa_searches': 0,  # Placeholder - implement tracking in search endpoint
             'classrooms_created': classrooms_created_data,
             'classrooms_joined': classrooms_joined_data,
-=======
-        return jsonify({
-            'uploads': uploads_count,
-            'comments': comments_count,
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
             'recent_activity': recent_activity
         }), 200
     except Exception as e:
@@ -1708,7 +1565,6 @@ def get_user_stats():
 # Create tables
 with app.app_context():
     try:
-<<<<<<< HEAD
         # Drop all existing tables
         db.drop_all()
         logger.info("Dropped all existing tables")
@@ -2471,15 +2327,6 @@ def get_messages(classroom_id):
     except Exception as e:
         return jsonify({'message': f'Error fetching messages: {str(e)}'}), 500
 
-=======
-        # Create tables if they don't exist
-        db.create_all()
-        logger.info("Database tables created successfully")
-    except Exception as e:
-        logger.error(f"Error creating database tables: {str(e)}")
-        raise
-
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 if __name__ == '__main__':
     app.run(debug=True)
 

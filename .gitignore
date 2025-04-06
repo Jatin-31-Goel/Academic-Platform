@@ -51,18 +51,14 @@ ENV/
 # Database
 *.db
 *.sqlite3
-<<<<<<< HEAD
 instance/
 uploads/
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-<<<<<<< HEAD
 
 # Flask
 flask_session/
@@ -73,5 +69,3 @@ instance/
 *.log
 local_settings.py
 db.sqlite3-journal
-=======
->>>>>>> fad2872af265d079db5dd37c27b5b78c8a55027c
