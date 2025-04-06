@@ -137,11 +137,6 @@ npm start
 ## Environment Variables Required
 See `.env.example` for required environment variables.
 
-## Team Members
-- **Jatin (2022MCB1266)** - Frontend Developer
-- **Jitender (2022MCB1318)** - Backend Developer
-- **Sarthak (2022MCB1278)** - Database Manager
-
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 

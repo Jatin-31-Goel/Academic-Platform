@@ -1565,11 +1565,7 @@ def get_user_stats():
 # Create tables
 with app.app_context():
     try:
-        # Drop all existing tables
-        db.drop_all()
-        logger.info("Dropped all existing tables")
-        
-        # Create all tables
+        # Create tables only if they don't exist
         db.create_all()
         logger.info(f"Database initialized at {DB_PATH}")
         
