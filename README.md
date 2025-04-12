@@ -1,109 +1,145 @@
-# Academic Resource Portal
+# DEP Platform
 
-A full-stack web application for sharing academic resources, built with React and Flask.
+A comprehensive platform for IIT Ropar students with secure authentication, resource sharing, and various academic features.
 
 ## Features
 
-- User Authentication (Login/Signup)
-- Resource Upload and Sharing
-- File Management with Cloudinary
-- Voting System
-- Comments System
-- Search and Filter Resources
-- Responsive Design
-- Dark/Light Mode
-- Protected Routes
+### Authentication System
+- **Dual Authentication Methods**:
+  - OTP-based Login (Primary)
+  - Password-based Login (Alternative)
+- **Secure Signup**:
+  - IITRPR Email Domain Validation (@iitrpr.ac.in)
+  - Strong Password Requirements
+  - Real-time Validation
+- **Password Reset**:
+  - OTP-based Reset System
+  - Session Invalidation on Reset
+  - Rate Limiting Protection
 
-## Tech Stack
+### Academic Resources
+- **Study Materials**:
+  - Course-specific Resources
+  - Previous Year Papers
+  - Notes and Tutorials
+- **DSA Resources**:
+  - Curated DSA Topics
+  - Interview Preparation Materials
+  - Practice Problems
 
-### Frontend
-- React.js
-- Material-UI
-- Axios
-- React Router
-- Context API
+### Internship & Placement
+- **Opportunities**:
+  - Job Listings
+  - Interview Experiences
+  - Company-wise Resources
+- **Seniors Data**:
+  - Placement Statistics
+  - Success Stories
+  - Resume Templates
 
-### Backend
-- Flask
-- SQLAlchemy
-- JWT Authentication
-- Cloudinary
-- CORS
+### Community Features
+- **Discussion Groups**:
+  - Course-specific Discussions
+  - Doubt Resolution
+  - Peer Learning
+- **Resource Sharing**:
+  - File Upload/Download
+  - Cloud Storage Integration
+  - Version Control
 
-## Prerequisites
+## Security Features
+- JWT-based Authentication
+- Password Hashing with bcrypt
+- Rate Limiting for API Endpoints
+- Content Security Policy (CSP)
+- XSS Protection
+- CORS Protection
+- Secure Headers
 
-- Python 3.8+
-- Node.js 14+
-- npm or yarn
-- Cloudinary account
-- SQLite (included with Python)
+## Password Requirements
+- Minimum 6 characters
+- At least one uppercase letter
+- At least one lowercase letter
+- At least one number
+- Visual strength indicator
 
 ## Setup Instructions
 
-1. Clone the repository:
+1. **Clone the Repository**
 ```bash
 git clone <repository-url>
-cd AcademicPlatform
+cd DEP-main
 ```
 
-2. Set up the backend:
+2. **Set Up Python Environment**
 ```bash
-# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your credentials
 ```
 
-3. Set up the frontend:
+3. **Environment Variables**
+- Copy `.env.example` to `.env`
+- Update the variables with your values
+```bash
+cp .env.example .env
+```
+
+4. **Database Setup**
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
+
+5. **Start the Backend Server**
+```bash
+python app.py
+```
+
+6. **Start the Frontend Development Server**
 ```bash
 cd my-app
 npm install
-```
-
-4. Start the development servers:
-
-Backend:
-```bash
-# From the root directory
-flask run
-```
-
-Frontend:
-```bash
-# From the my-app directory
 npm start
 ```
 
-5. Access the application:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+## API Endpoints
 
-## Environment Variables
+### Authentication
+- `POST /signup` - Create new account
+- `POST /login` - Password-based login
+- `POST /generate-otp` - Request OTP for login
+- `POST /verify-otp` - Verify OTP for login
+- `POST /request-password-reset` - Request password reset
+- `POST /verify-reset-otp` - Reset password with OTP
 
-Create a `.env` file in the root directory with the following variables:
+### Resources
+- `GET /resources` - List all resources
+- `POST /resources` - Upload new resource
+- `GET /resources/:id` - Get resource details
+- `PUT /resources/:id` - Update resource
+- `DELETE /resources/:id` - Delete resource
 
-```
-JWT_SECRET=your_jwt_secret_key_here
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
+### Rate Limits
+- OTP Generation: 5 attempts per hour
+- OTP Verification: 5 attempts per OTP
+- Password Reset: 5 attempts per hour
+- Resource Upload: 50 per day
+
+## Tech Stack
+- **Backend**: Flask, SQLAlchemy, JWT
+- **Frontend**: React, Material-UI
+- **Database**: SQLite
+- **File Storage**: Cloudinary
+- **Email**: SMTP (Gmail)
+
+## Environment Variables Required
+See `.env.example` for required environment variables.
 
 ## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
  
